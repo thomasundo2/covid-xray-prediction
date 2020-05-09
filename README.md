@@ -11,7 +11,7 @@ I first started with exploratory data analysis to understand the data that was p
 
 Because of the large discrepancy between the Covid images and the rest of images, it may be beneficial to augment the Covid data to increase the samples. Analyzing the dataset, I found that most of the images are different sizes. This would require resizing the data to a specific size to specify the features. I used an image size of `250x250`, but increasing this value would most likely support results. Below are a few of the samples from each class, with each row containing a different class:
 ![Before Preprocessing](/images/before_pre.png)
-To the untrained eye, these images are hard to distinguish from each other. I attempted to use a method of (bone suppression) [https://arxiv.org/pdf/1811.02628.pdf], which has historically performed well; however, the Generative Adverserial Network used to train the bone suppression model was trained using X-Rays that looked very different from the data provided. However, it may be useful to look into in the future.
+To the untrained eye, these images are hard to distinguish from each other. I attempted to use a method of [bone suppression](https://arxiv.org/pdf/1811.02628.pdf), which has historically performed well; however, the Generative Adverserial Network used to train the bone suppression model was trained using X-Rays that looked very different from the data provided. However, it may be useful to look into in the future.
 
 ![Bone Suppression Example](/images/bone_sup.png)
 
@@ -23,7 +23,7 @@ After testing the model, I decided that no data augmentation was necessary to ac
 
 The Model
 -
-I chose to use Convolutional Neural Networks, and partially transfered from VGG16. VGG16 is pretrained on ImageNet, and will help speed up the model as well as understand general "ideas". From there, I added layers to further fine tune the model.  This is because first few layers capture general details like color blobs, patches, edges, etc. Instead of randomly initialized weights for these layers, it would be much better if you fine tune them. I attempted to use (Depthwise Convolution) [https://www.kaggle.com/aakashnain/beating-everything-with-depthwise-convolution] for various depths, as well as batch size = 10. This method also performed well in similar classification tasks. Below are the amount of parameters of our model. 
+I chose to use Convolutional Neural Networks, and partially transfered from VGG16. VGG16 is pretrained on ImageNet, and will help speed up the model as well as understand general "ideas". From there, I added layers to further fine tune the model.  This is because first few layers capture general details like color blobs, patches, edges, etc. Instead of randomly initialized weights for these layers, it would be much better if you fine tune them. I attempted to use [Depthwise Convolution](https://www.kaggle.com/aakashnain/beating-everything-with-depthwise-convolution) for various depths, as well as batch size = 10. This method also performed well in similar classification tasks. Below are the amount of parameters of our model. 
 
 `Total params: 119,597,380
 Trainable params: 104,873,476
